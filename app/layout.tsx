@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const sansFont = Inter({
-  variable: "--font-geist-",
+  variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
