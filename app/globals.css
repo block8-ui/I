@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  background: #03060b;
+  overflow-x: clip;
+  color-scheme: dark;
+}
+
+body {
+  background: #03060b;
+  color: #fff;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* In the base layer so Tailwind utilities (e.g. outline-none) can override them */
+@layer base {
+  ::selection {
+    background: #ffb36b;
+    color: #05080d;
+  }
+
+  :focus-visible {
+    outline: 1px solid #ffb36b;
+    outline-offset: 3px;
+  }
+}
+
+@keyframes hud-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.hud-fade {
+  animation: hud-fade 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: 0.15s;
+}
+
+@keyframes hud-scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.hud-scroll-line {
+  animation: hud-scroll-line 2s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-fade,
+  .hud-scroll-line {
+    animation: none;
+  }
+}
+
+/* ---------- NeuralCore portal ---------- */
+
+.portal-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+}
+.toast-in {
+  animation: toast-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes badge-reveal {
+  0% {
+    transform: scale(0.2) rotate(-180deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15) rotate(10deg);
+  }
+}
+.badge-reveal {
+  display: block;
+  animation: badge-reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes xp-pop {
+  0% {
+    transform: scale(1.35);
+    color: #ffffff;
+  }
+}
+.xp-pop {
+  animation: xp-pop 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-in,
+  .badge-reveal,
+  .xp-pop {
+    animation: none;
+  }
+}
